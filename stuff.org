@@ -1,207 +1,209 @@
 all stuff below is inspired mostly from the following:
 [[https://www.youtube.com/watch?v=SzA2YODtgK4][getting started with org mode!]]
-* markup language stuff
+* editing sections 
+** markup language stuff
 
-basic examples of text:
-+strikethrough+ /italic/ *bold* *anything* =verbatim= 
+ basic examples of text:
+ +strikethrough+ /italic/ *bold* *anything* =verbatim= 
 
 
-** stuff 
+*** basic included stuff 
 
-- meta enter to create new tabs of the same type!
-- links
-- bullets
+ - meta enter to create new tabs of the same type!
+ - links
+ - bullets
 
-** link stuff
+*** link stuff
 
-good key bindings to know:
-- ctr-c / ctr-l create a link
-- ctr-c / ctr-o (to go)
+ good key bindings to know:
+ - ctr-c / ctr-l create a link
+ - ctr-c / ctr-o (to go)
 
-- example link:
-- [[http://google.com][google!]]
+ - example link:
+ - [[http://google.com][google!]]
 
-links can bring you to any place! emails, other files, to-do items.. or websites..
+ links can bring you to any place! emails, other files, to-do items.. or websites..
  
-* tables!
+** tables!
 
-syntax :  | header 1 | header 2 |
+ syntax :  | header 1 | header 2 |
 
-         \|- (tab)
+          \|- (tab)
 
-these bad boys are spreadsheets. you can do almost anything you want inside of these data tables..
+ these bad boys are spreadsheets. you can do almost anything you want inside of these data tables..
+*** example
+ | some            | data               |
+ |-----------------+--------------------|
+ | things you liek | we can format this |
+ | literally       | hower we want..    |
 
-** example
-| some            | data               |
-|-----------------+--------------------|
-| things you liek | we can format this |
-| literally       | hower we want..    |
-
-| header1 | header2 | header 3 | header 4 |
-|---------+---------+----------+----------|
-| stuff   | things  |      123 | 12F      |
-|         |         |          |          |
+ | header1 | header2 | header 3 | header 4 |
+ |---------+---------+----------+----------|
+ | stuff   | things  |      123 | 12F      |
  
-* export to other fromats! :D 
-big installation for Tex =/ maybe overleaf is just better
-*Main command* : ctr -c / ctr -e 
-** html file! holy god!!
+** export to other fromats! :D 
+ big installation for Tex =/ maybe overleaf is just better
+ *Main command* : ctr -c / ctr -e 
+*** html file! holy god!!
 
-** lets include some meta data
+*** lets include some meta data
 
-#+TITLE: A Gentle Introduction to Org-mode! ;)
+ #+TITLE: A Gentle Introduction to Org-mode! ;)
 
-** do you like doing whatever you want with your export? 
-#+OPTIONS: toc:nil
+*** do you like doing whatever you want with your export? 
+ #+OPTIONS: toc:nil
 
-* Source code: :D
+* export sections 
+** Source code: :D
 
-this puppy needs an org-babel install? to be able to run some of the source code you want..
-#+BEGIN_SRC ruby
-  # comments to include here! :D
-     def fact(n)
-       if n == 0
-	 1
-       else
-	 n* fact(n -1 )
-       end
-     end
-#+END_SRC
+ this puppy needs an org-babel install? to be able to run some of the source code you want..
+ #+BEGIN_SRC ruby
+   # comments to include here! :D
+      def fact(n)
+	if n == 0
+	  1
+	else
+	  n* fact(n -1 )
+	end
+      end
+ #+END_SRC
 
-#+BEGIN_SRC C++
-int a(1);
-int b(2);
-return a + b;
-#+END_SRC
+ #+BEGIN_SRC C++
+ int a(1);
+ int b(2);
+ return a + b;
+ #+END_SRC
 
 
-#+RESULTS:
+ #+RESULTS:
 
-* LaTeX Integration
-** formating things
+** LaTeX Integration
+*** formating things
 
-- bullets: \alpha \rightarrow \beta
-- $0(n * \log n)$
+ - bullets: \alpha \rightarrow \beta
+ - $0(n * \log n)$
 
-\begin{align*}
- 3 * 2 + &= 6 + 1 \\
-         &= 7
-\end{align*}
+ \begin{align*}
+  3 * 2 + &= 6 + 1 \\
+          &= 7
+ \end{align*}
 
-* literate programming
-* todo stuff! ;)
+** literate programming
+* todo sections 
+** todo stuff! ;)
 
-- shift - meta - enter : create an additional todo item
-- ctr -c / ctr - t : cycle through the states
-- ctr -c / ctr - d : bring up a calander in the editor..
-- ctr -c / ctr - a : summon the agenda options
-- 
-- when finishing and item / can append all 'done' items to single done.org archive..
+ - shift - meta - enter : create an additional todo item
+ - ctr -c / ctr - t : cycle through the states
+ - ctr -c / ctr - d : bring up a calander in the editor..
+ - ctr -c / ctr - a : summon the agenda options
+ - 
+ - when finishing and item / can append all 'done' items to single done.org archive..
 
-** TODO explain todo lists! 
-** TODO cycle through states
-- create a date and you can easily cycle through with shift..
-  DEADLINE: <2018-06-24 Sun> 
+*** TODO explain todo lists! 
+*** TODO cycle through states
+ - create a date and you can easily cycle through with shift..
+   DEADLINE: <2018-06-24 Sun> 
   
-* useful things / plugs in to check out for emacs:
-Aaron Bieber youtube video inspired:
+** useful things / plugs in to check out for emacs:
+ Aaron Bieber youtube video inspired:
 
-evil mode: or, how i learned to stop worrying and love emacs..
-[[https://www.youtube.com/watch?v=JWD1Fpdd4Pc][evil_mode!]]
-** flycheck - why is flycheck giving me errors in c++ which don't exist..
+ evil mode: or, how i learned to stop worrying and love emacs..
+ [[https://www.youtube.com/watch?v=JWD1Fpdd4Pc][evil_mode!]]
+*** flycheck - why is flycheck giving me errors in c++ which don't exist..
 
-** powerline
+*** powerline
    
-** magit - git interface
-** terminal emulators for zsh
-*** ansi-term
-    nice and quite way to get zsh to run without having any bash / errors. actually 
-    a full zsh emulator running within emacs.. >.>
+*** magit - git interface
+*** terminal emulators for zsh
+**** ansi-term
+     nice and quite way to get zsh to run without having any bash / errors. actually 
+     a full zsh emulator running within emacs.. >.>
 
-** gtags? 
-   is this the ability to create links between functions between different files?
-** evil mode :
-   so you want to have vim inside of your emacs.
-** snippets - holy moly.. -- vscode like peek function definitions
-** emacsclient -t . 
-   run a client emulator within your terminal to find your emacs client?
-   tmux replacement?
-** helm? narrowing list prompts
-   - narrowing completion framework - like ctrl - p for every emacs list.
-   - search for a function name. etc
-   - 'elisp advice' ?
+*** gtags? 
+    is this the ability to create links between functions between different files?
+*** evil mode :
+    so you want to have vim inside of your emacs.
+*** snippets - holy moly.. -- vscode like peek function definitions
+*** emacsclient -t . 
+    run a client emulator within your terminal to find your emacs client?
+    tmux replacement?
+*** helm? narrowing list prompts
+    - narrowing completion framework - like ctrl - p for every emacs list.
+    - search for a function name. etc
+    - 'elisp advice' ?
 
-** DONE some practice vim stuff in the morning  
-** DONE tutoring blake
-** DONE tutoring ryan
-** DONE create ssh server downstairs
-** DONE silly 2 hr meeting 
-** DONE practice vim
-- ctr / f move down a page
-- ctr / b move back in the page.
-- <num> gg will mode to a particle line. gg by itself will move to beginning of file..
-- G will move to the end of the file..
-- command line mode with single numbers will move cursor to that line..
-- last none blank: 'g' , '_' will work..
-- goto line mode will not move into closed org mode bullets..
-- I - move to beginning of line and enter insert mode..
-- a - append
-- A - move to end of line and begin inserting..
-- 0 - move to beginning of line..
-- o - insert line below and enter insert mode..
-- O - insert line above and enter insert mode
-** DONE install ISE / impact /
-** DONE finish org mode video by german astronomer
-** DONE simulate current FSM and verify eth header
-** DONE change the init.el file to be created from a .org configurations file! :)
-** DONE 30 minute run / exercise
-** DONE weekly group meeting
-** DONE include a test read and print in test_py to begin formating data..
-** DONE include a command line interface function
-** DONE implement updated thresh scaler counter on firmware
-** DONE tutoring
-** DONE attend croker talk
-** TODO replace current eth header frame with eth package
-** TODO purchase a laptop stand for office 
-** TODO clean back porch
-** TODO refurbish bike so that it's rideable
-** TODO successfully implement super class method initialization of irs class
-** TODO incorporate py_fun writing function to create graphs for thresh scans
-** TODO [#A] discover problem source of "continuous" scaler count reads..
-** TODO successfully use magit to perform either a git push / pull
-** TODO get keys fixed on mac at apple store..
+*** DONE some practice vim stuff in the morning  
+*** DONE tutoring blake
+*** DONE tutoring ryan
+*** DONE create ssh server downstairs
+*** DONE silly 2 hr meeting 
+*** DONE practice vim
+ - ctr / f move down a page
+ - ctr / b move back in the page.
+ - <num> gg will mode to a particle line. gg by itself will move to beginning of file..
+ - G will move to the end of the file..
+ - command line mode with single numbers will move cursor to that line..
+ - last none blank: 'g' , '_' will work..
+ - goto line mode will not move into closed org mode bullets..
+ - I - move to beginning of line and enter insert mode..
+ - a - append
+ - A - move to end of line and begin inserting..
+ - 0 - move to beginning of line..
+ - o - insert line below and enter insert mode..
+ - O - insert line above and enter insert mode
+*** DONE install ISE / impact /
+*** DONE finish org mode video by german astronomer
+*** DONE simulate current FSM and verify eth header
+*** DONE change the init.el file to be created from a .org configurations file! :)
+*** DONE 30 minute run / exercise
+*** DONE weekly group meeting
+*** DONE include a test read and print in test_py to begin formating data..
+*** DONE include a command line interface function
+*** DONE implement updated thresh scaler counter on firmware
+*** DONE tutoring
+*** DONE attend croker talk
+*** DONE purchase a laptop stand for office 
+*** TODO get keys fixed on mac at apple store..
+**** DONE setup appointment
+*** TODO successfully use magit to perform either a git push / pull
+*** TODO replace current eth header frame with eth package
+*** TODO clean back porch
+*** TODO refurbish bike so that it's rideable
+*** TODO successfully implement super class method initialization of irs class
+*** TODO incorporate py_fun writing function to create graphs for thresh scans
+**** DONE finish a generic model in quick_test.py
+*** TODO [#A] discover problem source of "continuous" scaler count reads..
+** byte ordering of the array
+*** read on tcpdump
+    the values that come out from the board first are the source mac
+*** read in hardware
+    byte ordering is stored in 'big endian' in hardware. standard logic
+    vectors are big endian the most significant value is recorded
+    first..
 
-* byte ordering of the array
-** read on tcpdump
-   the values that come out from the board first are the source mac
-** read in hardware
-   byte ordering is stored in 'big endian' in hardware. standard logic
-   vectors are big endian the most significant value is recorded
-   first..
-
-   byte ordering is read in reverse values of the byte ordering of
-   each packet recevied..  values which are byte flopped in hardware:
-   mac values / udp port values
-** read on standard output
-MAC: (big endian)
-   standard output of the source mac is:
-   high values: 2 bytes stored: '0xb8ca'
-   low values : 4 bytes stored: '0x3abb5493'
-   these values are big endian, with the high bytes separate.
-IP: (little endian)
-   dest ip is reported in little endian: 'reverse byte ordering'
-   value: '0xfe0600a'  
+    byte ordering is read in reverse values of the byte ordering of
+    each packet recevied..  values which are byte flopped in hardware:
+    mac values / udp port values
+*** read on standard output
+ MAC: (big endian)
+    standard output of the source mac is:
+    high values: 2 bytes stored: '0xb8ca'
+    low values : 4 bytes stored: '0x3abb5493'
+    these values are big endian, with the high bytes separate.
+ IP: (little endian)
+    dest ip is reported in little endian: 'reverse byte ordering'
+    value: '0xfe0600a'  
    
 
    
-| source          | byte ordering |
-|-----------------+---------------|
-| hardware        | big endian    |
-| standard output | mixed         |
-| firmware        | big endian    |
-| tcp dump        | little endian |
+ | source          | byte ordering |
+ |-----------------+---------------|
+ | hardware        | big endian    |
+ | standard output | mixed         |
+ | firmware        | big endian    |
+ | tcp dump        | little endian |
 
 
-things which are get
+ things which are get
  
 

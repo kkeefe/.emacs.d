@@ -1,0 +1,153 @@
+* my configurations :)
+** package initalize stuff
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/"))
+
+(package-initialize)
+
+(setq inhibit-startup-message t)
+(tool-bar-mode -1)
+
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+        (package-refresh-contents)
+        (package-install 'use-package))
+  
+#+END_SRC
+** use package
+#+BEGIN_SRC emacs-lisp 
+(use-package try
+	     :ensure t)
+#+END_SRC
+** whichkey
+#+BEGIN_SRC emacs-lisp 
+(use-package which-key
+	     :ensure t
+	     :config
+	     (which-key-mode))
+#+END_SRC
+** ido-mode everywhere
+#+BEGIN_SRC emacs-lisp
+
+(setq ido-everywhere t)
+
+(ido-mode 1)
+
+;; this is your life saver.. get rid of this damn bell..
+(setq ring-bell-function 'ignore)
+
+(use-package counsel
+  :ensure t
+  )
+#+END_SRC
+** swiper
+#+BEGIN_SRC emacs-lisp
+(use-package swiper
+  :ensure try
+  :config
+  (progn
+    (ivy-mode 1)
+    (setq ivy-use-virtual-buffers t)
+    (setq enable-recursive-minibuffers t)
+    ;; enable this if you want `swiper' to use it
+    ;; (setq search-default-mode #'char-fold-to-regexp)
+    (global-set-key "\C-s" 'swiper)
+    (global-set-key (kbd "C-c C-r") 'ivy-resume)
+    (global-set-key (kbd "<f6>") 'ivy-resume)
+    (global-set-key (kbd "M-x") 'counsel-M-x)
+    (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+    (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+    (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+    (global-set-key (kbd "<f1> l") 'counsel-find-library)
+    (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+    (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+    (global-set-key (kbd "C-c g") 'counsel-git)
+    (global-set-key (kbd "C-c j") 'counsel-git-grep)
+    (global-set-key (kbd "C-c k") 'counsel-ag)
+    (global-set-key (kbd "C-x l") 'counsel-locate)
+    (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+    (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+    ))
+#+END_SRC
+** list buffers and flycheck and autocomplete
+#+BEGIN_SRC emacs-lisp
+  (defalias 'list-buffers 'ibuffer)
+
+  ;; (defalias 'list-buffers 'ibuffer-other-window) 
+  ;; some option to include if you want to make sure that it opens in new window..
+
+  ;; if you like yourself some flycheck..
+  ;; (package-refresh-contents)
+  ;; (package-install 'flycheck)
+
+  (use-package flycheck
+    :ensure t
+    :init (global-flycheck-mode))
+
+  (use-package auto-complete
+    :ensure t
+    :init
+    (progn
+      (ac-config-default)
+      (global-auto-complete-mode t)
+      ))
+  ;; (add-hook 'python-mode-hook
+  ;; 	    (lambda ()
+  ;; 	    (setq flycheck-python-pylint-executable "/usr/bin/pylint")
+  ;; 	    (setq flycheck-pylintrc "/Users/kevinkeefe/.pylintrc"))
+#+END_SRC
+
+** execess stuff for trying misc
+#+BEGIN_SRC emacs-lisp
+  ;; if you want a hell of a lot more themes:
+  ;; (use-package color-theme
+  ;;    :ensure t)
+
+  ;; (use-package zenburn-theme
+  ;;   :ensure t
+  ;;   :config (load-theme 'zenburn t))
+#+END_SRC
+** fixing macOs pathing according to flycheck..
+#+BEGIN_SRC emacs-lisp
+;; flycheck claims that this fixes pathing errors..
+(package-install 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
+#+END_SRC
+** org mode and babel stuff configurations
+#+BEGIN_SRC emacs-lisp
+ ;; org babel stuff
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages '((C . t)))
+
+;; ;; if you like the tabbar..
+;; (use-package tabbar
+;;   :ensure t
+;;   :config
+;;   (tabbar-mode 1))
+  
+#+END_SRC
+** evil mode ;)
+#+BEGIN_SRC emacs-lisp
+;; lets include some evil mode stuff!
+;; who doesn't want to get good at vim? ;)
+(add-to-list 'load-path "~/.emacs.d/evil")
+(require 'evil)
+(evil-mode t)
+#+END_SRC
+** removing bugger colors for iterm 2 
+#+BEGIN_SRC emacs-lisp
+ ;; this silly command, believe it or not, removes iterm2 error on emacs startup
+(delete-file "~/Library/Colors/Emacs.clr")
+#+END_SRC
+** reveal.js
+# #+BEGIN_SRC emacs-lisp
+#   (setq org-reveal-mathjax t)
+#   (use-package ox-reveal
+#       :ensure ox-reveal)
+#       (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+#       (setq org-reveal-mathjax t) 
+# #+END_SRC

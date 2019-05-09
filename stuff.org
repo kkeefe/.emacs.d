@@ -1,6 +1,6 @@
 all stuff below is inspired mostly from the following:
 [[https://www.youtube.com/watch?v=SzA2YODtgK4][getting started with org mode!]]
-* editing sections 
+* editing sections
 ** markup language stuff
 
  basic examples of text:
@@ -53,7 +53,8 @@ all stuff below is inspired mostly from the following:
 *** do you like doing whatever you want with your export? 
  #+OPTIONS: toc:nil
 
-* export sections 
+* org capture -emacs nyc --check it out
+* export sections
 ** Source code: :D
 
  this puppy needs an org-babel install? to be able to run some of the source code you want..
@@ -69,13 +70,11 @@ all stuff below is inspired mostly from the following:
  #+END_SRC
 
  #+BEGIN_SRC C++
- int a(1);
- int b(2);
- return a + b;
+   int a(1);
+   int b(2);
+   cout << "hi there.. " << endl;
+   return a + b;
  #+END_SRC
-
-
- #+RESULTS:
 
 ** LaTeX Integration
 *** formating things
@@ -89,20 +88,20 @@ all stuff below is inspired mostly from the following:
  \end{align*}
 
 ** literate programming
-* todo sections 
+* todo sections
 ** todo stuff! ;)
 
  - shift - meta - enter : create an additional todo item
  - ctr -c / ctr - t : cycle through the states
  - ctr -c / ctr - d : bring up a calander in the editor..
  - ctr -c / ctr - a : summon the agenda options
- - 
+ - M - shft - enter     : enter another TODO
  - when finishing and item / can append all 'done' items to single done.org archive..
 
 *** TODO explain todo lists! 
 *** TODO cycle through states
- - create a date and you can easily cycle through with shift..
-   DEADLINE: <2018-06-24 Sun> 
+  - create a date and you can easily cycle through with shift..
+    DEADLINE: <2018-06-24 Sun> 
   
 ** useful things / plugs in to check out for emacs:
  Aaron Bieber youtube video inspired:
@@ -114,6 +113,14 @@ all stuff below is inspired mostly from the following:
 *** powerline
    
 *** magit - git interface
+
+**** magit keybinds
+     - press q to quit
+     - meta - magit-status to bring up
+     - 'head' refers to the last commit on a branch
+     - you can store 'hunks' of information from a particular diff instead of the whole file
+     - commiting: c - c to enter commit ctr-c - ctr-c to finish commit
+all at once..
 *** terminal emulators for zsh
 **** ansi-term
      nice and quite way to get zsh to run without having any bash / errors. actually 
@@ -132,48 +139,15 @@ all stuff below is inspired mostly from the following:
     - search for a function name. etc
     - 'elisp advice' ?
 
-*** DONE some practice vim stuff in the morning  
-*** DONE tutoring blake
-*** DONE tutoring ryan
-*** DONE create ssh server downstairs
-*** DONE silly 2 hr meeting 
-*** DONE practice vim
- - ctr / f move down a page
- - ctr / b move back in the page.
- - <num> gg will mode to a particle line. gg by itself will move to beginning of file..
- - G will move to the end of the file..
- - command line mode with single numbers will move cursor to that line..
- - last none blank: 'g' , '_' will work..
- - goto line mode will not move into closed org mode bullets..
- - I - move to beginning of line and enter insert mode..
- - a - append
- - A - move to end of line and begin inserting..
- - 0 - move to beginning of line..
- - o - insert line below and enter insert mode..
- - O - insert line above and enter insert mode
-*** DONE install ISE / impact /
-*** DONE finish org mode video by german astronomer
-*** DONE simulate current FSM and verify eth header
-*** DONE change the init.el file to be created from a .org configurations file! :)
-*** DONE 30 minute run / exercise
-*** DONE weekly group meeting
-*** DONE include a test read and print in test_py to begin formating data..
-*** DONE include a command line interface function
-*** DONE implement updated thresh scaler counter on firmware
-*** DONE tutoring
-*** DONE attend croker talk
-*** DONE purchase a laptop stand for office 
-*** TODO get keys fixed on mac at apple store..
-**** DONE setup appointment
-*** TODO successfully use magit to perform either a git push / pull
 *** TODO replace current eth header frame with eth package
-*** TODO clean back porch
-*** TODO refurbish bike so that it's rideable
+**** TODO prepare eth header version to merge into ntc_firmware.
 *** TODO successfully implement super class method initialization of irs class
-*** TODO incorporate py_fun writing function to create graphs for thresh scans
-**** DONE finish a generic model in quick_test.py
-*** TODO [#A] discover problem source of "continuous" scaler count reads..
-** byte ordering of the array
+    croker to include modification to discover function.
+*** TODO refurbish bike so that it's rideable
+
+*** TODO connect IRS board to 109 computer
+*** TODO test IRS thresholds with muons / laser?
+*** TODO set up next steps for eth header package
 *** read on tcpdump
     the values that come out from the board first are the source mac
 *** read in hardware
@@ -207,3 +181,5 @@ all stuff below is inspired mostly from the following:
  things which are get
  
 
+ 
+ 

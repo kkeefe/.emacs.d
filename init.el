@@ -16,9 +16,16 @@
  '(nrepl-message-colors
    (quote
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
+ '(org-agenda-files (quote ("~/.emacs.d/stuff.org")))
+ '(org-default-notes-file (concat org-directory "/org_notes.org"))
+ '(org-directory "~/.emacs.d")
+ '(org-export-html-postamble nil)
+ '(org-hide-leading-stars t)
+ '(org-startup-folded (quote overview))
+ '(org-startup-indented t)
  '(package-selected-packages
    (quote
-    (org-projectile zenburn-theme which-key use-package try pylint powerline-evil org-evil msvc ipcalc htmlize help-find-org-mode function-args format-all flymake-ruby flycheck flex-isearch exec-path-from-shell evil-org evil-magit cpputils-cmake counsel company-irony-c-headers color-theme)))
+    (lsp-mode org-ac org-bullets org-capture-pop-frame evil-tutor evil-avy org-projectile zenburn-theme which-key use-package try pylint powerline-evil org-evil msvc ipcalc htmlize help-find-org-mode function-args format-all flymake-ruby flycheck flex-isearch exec-path-from-shell evil-org evil-magit cpputils-cmake counsel company-irony-c-headers color-theme)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map

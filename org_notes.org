@@ -1,0 +1,4 @@
+* Tasks
+** TODO 
+  [2019-05-09 Thu]
+  [[file:~/.emacs.d/stuff.org::*successfully%20implement%20super%20class%20method%20initialization%20of%20irs%20class][successfully implement super class method initialization of irs class]]

@@ -17,12 +17,24 @@
 (require 'use-package)
   
 #+END_SRC
+** general configs.
+#+BEGIN_SRC emacs-lisp
+  ;; this bad boy turns on line numbering by default
+  (linum-mode 1)
+#+END_SRC
+** fixing macOs pathing according to flycheck..
+# #+BEGIN_SRC emacs-lisp
+# ;; flycheck claims that this fixes pathing errors..
+# (package-install 'exec-path-from-shell)
+# (exec-path-from-shell-initialize)
+# #+END_SRC
 ** try package
 #+BEGIN_SRC emacs-lisp 
 (use-package try
 	     :ensure t)
 #+END_SRC
 ** evil mode ;)
+*** get the actual package
 #+BEGIN_SRC emacs-lisp
 ;; lets include some evil mode stuff!
 ;; who doesn't want to get good at vim? ;)
@@ -36,6 +48,7 @@
   ;; More configuration goes here
   )
 #+END_SRC
+*** set the colors and other customizations
 #+BEGIN_SRC emacs-lisp
 (setq evil-normal-state-tag   (propertize " COMMAND " 'face '((:background "dark khaki" :foreground "black")))
       evil-emacs-state-tag    (propertize "  EMACS  " 'face '((:background "turquoise" :foreground "black")))
@@ -48,8 +61,6 @@
 #+BEGIN_SRC emacs-lisp
 (require 'powerline)
 (powerline-center-evil-theme)
-#+END_SRC
-#+BEGIN_SRC emacs-lisp
 (require 'evil-magit)
 #+END_SRC
 ** swiper
@@ -122,16 +133,42 @@
       (ac-config-default)
       (global-auto-complete-mode t)
       ))
-  ;; (add-hook 'python-mode-hook
-  ;; 	    (lambda ()
-  ;; 	    (setq flycheck-python-pylint-executable "/usr/bin/pylint")
-  ;; 	    (setq flycheck-pylintrc "/Users/kevinkeefe/.pylintrc"))
-#+END_SRC
-** fixing macOs pathing according to flycheck..
+
+  (setq-default flycheck-disabled-checkers '(c/c++-clang))
+  (add-hook 'c++-mode-hook (lambda () (setq flycheck-gcc-language-standard "c++11")))
+  #+END_SRC
+*** Python stuff 
 #+BEGIN_SRC emacs-lisp
-;; flycheck claims that this fixes pathing errors..
-(package-install 'exec-path-from-shell)
-(exec-path-from-shell-initialize)
+  (use-package jedi
+    :ensure t
+    :init
+    (add-hook 'python-mode-hook 'jedi:setup)
+    (add-hook 'python-mode-hook 'jedi:ac-setup))
+  ;; (add-hook 'python-mode-hook
+  ;;           (lambda ()
+  ;;             (setq flycheck-python-pylint-executable "/usr/bin/pylint")
+  ;;             (setq flycheck-pylintrc "/Users/kevinkeefe/.pylintrc"))
+#+END_SRC
+*** VHDL stuff
+# #+BEGIN_SRC emacs-lisp
+#   (flycheck-define-checker vhdl-tool
+#     "A VHDL syntax checker, type checker and linter using VHDL-Tool.
+
+#   See URL `http://vhdltool.com'."
+#     :command ("vhdl-tool" "client" "lint" "--compact" "--stdin" "-f" source
+#               )
+#     :standard-input t
+#     :error-patterns
+#     ((warning line-start (file-name) ":" line ":" column ":w:" (message) line-end)
+#      (error line-start (file-name) ":" line ":" column ":e:" (message) line-end))
+#     :modes (vhdl-mode))
+  
+#   (add-to-list 'flycheck-checkers 'vhdl-tool)
+# #+END_SRC
+** removing bugger colors for iterm 2 
+#+BEGIN_SRC emacs-lisp
+ ;; this silly command, believe it or not, removes iterm2 error on emacs startup
+(delete-file "~/Library/Colors/Emacs.clr")
 #+END_SRC
 ** org mode and babel stuff configurations
 #+BEGIN_SRC emacs-lisp
@@ -147,27 +184,87 @@
 ;;   (tabbar-mode 1))
   
 #+END_SRC
-** removing bugger colors for iterm 2 
+** org-mode stuff
 #+BEGIN_SRC emacs-lisp
- ;; this silly command, believe it or not, removes iterm2 error on emacs startup
-(delete-file "~/Library/Colors/Emacs.clr")
+  ;;; package -- Summary
+  ;;; Commentary:
+  ;;; Code:
+  (use-package org-bullets
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+  ;; ;; if you want some custom faces with your org mode!
+  ;; (setq org-todo-keyword-faces
+  ;;       '(("TODO" . org-warning) ("STARTED" . "yellow")
+  ;;         ("CANCELED" . (:foreground "blue" :weight bold))))
+
+  (custom-set-variables
+   '(org-directory "~/Documents/org_files")
+   '(org-default-notes-file (concat org-directory "/org_notes.org"))
+   '(org-export-html-postamble nil)
+   '(org-hide-leading-stars t)
+   '(org-startup-folded (quote overview))
+   '(org-startup-indented t)
+   )
+
+  ;; this uses org mode autocomplete
+  (use-package org-ac
+    :ensure t
+    :init (progn
+            (require 'org-ac)
+            (org-ac/config-default)
+            ))
+
+  (setq org-agenda-files (list "~/.emacs.d/org_agenda.org"))
+
+  ;; list of custom org templates
+  (setq org-capture-templates
+
+        '(("w" "work" entry (file+headline "~/Documents/org_files/work_done.org" "Work_Tasks")
+        "* TODO %?\n:Description:\n %^t \n %i \n")
+        ("s" "self-stuff" entry (file+headline "~/Documents/org_files/work_done.org" "Self_Tasks")
+        "* TODO %?\n:Description:\n %^t \n %i \n")
+        ("v" "quick work" entry (file+headline "~/Documents/org_files/work_done.org" "Quick_Tasks")
+        "* TODO %?\n:Description:\n %^t \n %i \n")
+        ("c" "creative" entry (file+headline "~/Documents/org_files/work_done.org" "Creative_Work")
+        "* TODO %?\n:Description:\n%^t \n %i \n")
+
+        ("p" "code problems" entry (file+headline "~/Documents/org_files/current_bugs.org" "Current Bugs")
+        "* TODO %?\n:Description:\n%^T\n%i %a\n" :prepend t)
+        ("b" "breakthroughs" entry (file+headline "~/Documents/org_files/current_bugs.org" "Breakthroughs!")
+        "* DONE %?\n:Description:\n%^T\n%i %a\n")))
+
+  ;; org keybinds to set
+  (global-set-key "\C-c a" 'org-agenda)
+  (global-set-key (kbd "C-c c") 'org-capture)
+  (global-set-key (kbd "C-c f") 'org-footnote-action)
+
+
+  ;; (setq org-file-apps
+  ;; 	(append '("\\.pdf\\'") . "evince %s")
+  ;; 	) org-file-apps ))
 #+END_SRC
+
 ** lets make some things pretty :D
 *** execess stuff for trying misc
- #+BEGIN_SRC emacs-lisp
-   ;; (use-package color-theme
-   ;;    :ensure t)
+ # #+BEGIN_SRC emacs-lisp
+ #   ;; (use-package color-theme
+ #   ;;    :ensure t)
 
-   (use-package zenburn-theme
-     :ensure t
-     :init (load-theme 'zenburn t))
- #+END_SRC
+ #   (use-package zenburn-theme
+ #     :ensure t
+ #     :init (load-theme 'zenburn t))
+ # #+END_SRC
 ** reveal.js
-#+BEGIN_SRC emacs-lisp
-  (setq org-reveal-mathjax t)
-  (use-package ox-reveal
-      :ensure ox-reveal)
-      (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
-      (setq org-reveal-mathjax t) 
-#+END_SRC
+   current version of emacs lists this as, unfortunately, incompatible. 
+   "Incompatible because it depends on uninstallable packages."
+# #+BEGIN_SRC emacs-lisp
+#   (setq org-reveal-mathjax t)
+#   (use-package ox-reveal
+#       :ensure ox-reveal)
+#       (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+#       (setq org-reveal-mathjax t) 
+# #+END_SRC
+
 
